@@ -14,7 +14,7 @@ declare namespace Nanoai {
 	}
 
 	/**
-	 * A multi-layer perceptron neural network model.
+	 * A multi-layer perceptron neural network.
 	 */
 	interface Network {
 		/**
@@ -85,13 +85,13 @@ declare namespace Nanoai {
 
 	/**
 	 * Creates a deep copy of the given object. Can be used to clone a neural
-	 * network model.
+	 * network, since networks are JSON encodable.
 	 *
 	 * @param object The object to clone.
 	 *
 	 * @returns A deep copy of the object.
 	 */
-	function clone<T>(object: T): T;
+	function copy<T>(object: T): T;
 
 	/**
 	 * Calls the `initializer` for each weight and bias in the network. If the
