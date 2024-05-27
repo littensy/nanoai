@@ -1,0 +1,6 @@
+{
+	"name": "nanoai",
+	"tree": {
+		"$path": "src"
+	}
+}

@@ -1,0 +1,11 @@
+[package]
+name = "littensy/nanoai"
+description = "Minimal library for creating neural networks"
+version = "0.1.0"
+license = "MIT"
+registry = "https://github.com/UpliftGames/wally-index"
+realm = "shared"
+exclude = ["**"]
+include = ["src", "src/**", "default.project.json", "wally.toml", "LICENSE.md"]
+
+[dev-dependencies]

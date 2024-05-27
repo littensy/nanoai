@@ -1,0 +1,25 @@
+name: Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Aftman
+        uses: ok-nick/setup-aftman@v0.4.2
+
+      - name: Install dependencies
+        run: wally install
+
+      - name: Build model
+        run: rojo build -o nanoai.rbxm
+
+      - uses: AButler/upload-release-assets@v3.0
+        with:
+          files: "nanoai.rbxm"
+          repo-token: ${{ secrets.GITHUB_TOKEN }}

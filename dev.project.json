@@ -1,0 +1,15 @@
+{
+	"name": "nanoai-dev",
+	"tree": {
+		"$className": "DataModel",
+		"ReplicatedStorage": {
+			"$className": "ReplicatedStorage",
+			"Nanoai": { "$path": "src" }
+		},
+		"TestService": {
+			"$className": "TestService",
+			"$properties": { "ExecuteWithStudioRun": true },
+			"spec": { "$path": "bin/spec.server.luau" }
+		}
+	}
+}
