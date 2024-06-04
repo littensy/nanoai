@@ -9,6 +9,7 @@ local types = require(script.types)
 
 export type Network = types.Network
 export type Activation = activation.Activation
+export type Agent = evolution.Agent
 
 return {
 	Activation = activation.Activation,

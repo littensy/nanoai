@@ -1,14 +1,29 @@
 local initialize = require(script.Parent.initialize)
 local types = require(script.Parent.types)
 type Network = types.Network
-type Thenable = types.Thenable
 local copy = require(script.Parent.copy)
+
+type Thenable = {
+	andThen: (self: Thenable, resolved: ((...any) -> ())?, rejected: ((unknown) -> ())?) -> Thenable,
+}
 
 export type Agent = {
 	network: Network,
 	fitness: number,
 }
 
+--[=[
+	Runs a genetic algorithm to evolve the neural network to minimize the
+	error between the output signal and the target signal.
+	
+	Calls the `spawn` function to assess the fitness of each agent in the
+	population, where `spawn` should return a fitness score for the agent.
+	If `spawn` returns a promise, the genetic algorithm will run all agents
+	in parallel.
+	
+	@param options The genetic algorithm options.
+	@return Each agent in the population sorted by fitness.
+]=]
 local function evolution(params: {
 	network: Network,
 	population: number,

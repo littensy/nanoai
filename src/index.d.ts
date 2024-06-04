@@ -14,7 +14,9 @@ declare namespace Nanoai {
 	}
 
 	/**
-	 * A multi-layer perceptron neural network.
+	 * The neural network model, containing the neurons, weights, biases, and
+	 * activation functions of the network. The network is JSON encodable, so
+	 * it is safe to serialize and send over a remote event.
 	 */
 	interface Network {
 		/**
@@ -52,7 +54,6 @@ declare namespace Nanoai {
 	 *
 	 * @param shape The shape of the network.
 	 * @param activation The activation functions of each layer.
-	 *
 	 * @returns A new neural network.
 	 */
 	function create(shape: number[], activation: Activation | Activation[]): Network;
@@ -62,36 +63,36 @@ declare namespace Nanoai {
 	 *
 	 * @param network The neural network.
 	 * @param input The input signal.
-	 *
 	 * @returns The output signal.
 	 */
 	function predict(network: Network, input: number[]): number[];
 
 	/**
 	 * Adjusts the weights and biases of the network to minimize the error between
-	 * the output signal and the target signal. Returns the error of the network.
+	 * the output signal and the target signal. The learning rate determines how
+	 * much the weights and biases are adjusted.
 	 *
-	 * Note that for efficient optimization, the network should be randomized
-	 * with the `init` functions before calling this function.
+	 * For efficient optimization, you must run an initialization function before
+	 * training the network. The `init` namespace contains a collection of
+	 * initialization functions.
 	 *
 	 * @param network The neural network.
 	 * @param input The input signal.
-	 * @param expected The expected output.
-	 * @param learningRate The learning rate.
-	 *
-	 * @returns The error of the network.
+	 * @param target The expected output.
+	 * @param learningRate The rate at which weights and biases are adjusted.
 	 */
-	function backpropagate(network: Network, input: number[], expected: number[], learningRate: number): number;
+	function backpropagate(network: Network, input: number[], target: number[], learningRate: number): void;
 
 	/**
 	 * Creates a deep copy of the given object. Can be used to clone a neural
 	 * network, since networks are JSON encodable.
 	 *
 	 * @param object The object to clone.
-	 *
 	 * @returns A deep copy of the object.
 	 */
 	function copy<T>(object: T): T;
+
+	type InitializeFilter = "weights" | "biases" | "all";
 
 	/**
 	 * Calls the `initializer` for each weight and bias in the network. If the
@@ -103,12 +104,13 @@ declare namespace Nanoai {
 	 *
 	 * @param network The neural network.
 	 * @param initializer The initializer function.
-	 *
+	 * @param filter The type of values to initialize. Default is `"all"`.
 	 * @returns The neural network.
 	 */
 	function initialize(
 		network: Network,
 		initializer: (layer: number, neuron: number, prevNeuron: number | -1) => number | void,
+		filter?: InitializeFilter,
 	): Network;
 
 	/**
@@ -116,13 +118,13 @@ declare namespace Nanoai {
 	 * optimization.
 	 */
 	namespace init {
-		function zeros(network: Network): Network;
-		function ones(network: Network): Network;
-		function constant(network: Network, value: number): Network;
-		function uniform(network: Network, min?: number, max?: number): Network;
-		function normal(network: Network, mean?: number, std?: number): Network;
-		function xavierNormal(network: Network): Network;
-		function xavierUniform(network: Network): Network;
+		function zeros(network: Network, filter?: InitializeFilter): Network;
+		function ones(network: Network, filter?: InitializeFilter): Network;
+		function constant(network: Network, value: number, filter?: InitializeFilter): Network;
+		function uniform(network: Network, min?: number, max?: number, filter?: InitializeFilter): Network;
+		function normal(network: Network, mean?: number, std?: number, filter?: InitializeFilter): Network;
+		function xavierNormal(network: Network, gain?: number): Network;
+		function xavierUniform(network: Network, gain?: number): Network;
 	}
 
 	interface Agent {
@@ -173,7 +175,6 @@ declare namespace Nanoai {
 	 * in parallel.
 	 *
 	 * @param options The genetic algorithm options.
-	 *
 	 * @returns Each agent in the population sorted by fitness.
 	 */
 	function evolution(options: GeneticAlgorithmOptions): Agent[];

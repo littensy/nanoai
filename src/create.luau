@@ -1,6 +1,15 @@
 local types = require(script.Parent.types)
 type Network = types.Network
 
+--[=[
+	Creates a new neural network with the specified shape and activation
+	functions. The shape is an array of numbers, where each element represents
+	the amount of neurons in that layer.
+	
+	@param shape The shape of the network.
+	@param activation The activation functions of each layer.
+	@return A new neural network.
+]=]
 local function create(shape: { number }, activation: string | { string }): Network
 	local width = #shape - 1
 	local layers = table.move(shape, 2, width + 1, 1, {})

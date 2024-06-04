@@ -2,8 +2,8 @@
 	"name": "nanoai-dev",
 	"tree": {
 		"$className": "DataModel",
-		"ReplicatedStorage": {
-			"$className": "ReplicatedStorage",
+		"ServerScriptService": {
+			"$className": "ServerScriptService",
 			"Nanoai": { "$path": "src" }
 		},
 		"TestService": {

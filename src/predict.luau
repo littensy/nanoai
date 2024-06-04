@@ -2,6 +2,13 @@ local activation = require(script.Parent.activation)
 local types = require(script.Parent.types)
 type Network = types.Network
 
+--[=[
+	Feeds the input signal through the network and returns the output signal.
+	
+	@param network The neural network.
+	@param input The input signal.
+	@return The output signal.
+]=]
 local function predict(network: Network, inputs: { number }): { number }
 	local previous = inputs
 
