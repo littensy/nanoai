@@ -93,7 +93,7 @@ local init = {
 	uniform = function(network: Network, min: number?, max: number?, filter: Filter?)
 		min = min or 0
 		max = max or 1
-		assert(min and max, "Type assertion failed")
+		assert(min and max, "Luau")
 
 		return initialize(network, function()
 			return math.random() * (max - min) + min
@@ -103,7 +103,7 @@ local init = {
 	normal = function(network: Network, mean: number?, std: number?, filter: Filter?)
 		mean = mean or 0
 		std = std or 1
-		assert(mean and std, "Type assertion failed")
+		assert(mean and std, "Luau")
 
 		return initialize(network, function()
 			return gaussian(mean, std)

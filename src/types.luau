@@ -36,4 +36,4 @@ export type Network = {
 	activation: { string },
 }
 
-return nil
+return {}
