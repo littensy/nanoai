@@ -1,4 +1,4 @@
-local initialize = require(script.Parent.initialize)
+local init = require(script.Parent.initializers)
 local types = require(script.Parent.types)
 type Network = types.Network
 local copy = require(script.Parent.copy)
@@ -36,7 +36,7 @@ local function evolution(params: {
 
 	for index = 1, params.population do
 		agents[index] = {
-			network = initialize.init.normal(copy(params.network)),
+			network = init.normal(copy(params.network)),
 			fitness = 0,
 		}
 	end
