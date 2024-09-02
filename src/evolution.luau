@@ -1,7 +1,9 @@
-local init = require(script.Parent.initializers)
-local types = require(script.Parent.types)
+local task = task or require("@lune/task")
+
+local init = require("./initializers")
+local types = require("./types")
 type Network = types.Network
-local copy = require(script.Parent.copy)
+local copy = require("./copy")
 
 type Thenable = {
 	andThen: (self: Thenable, resolved: ((...any) -> ())?, rejected: ((unknown) -> ())?) -> Thenable,
@@ -128,10 +130,10 @@ local function evolution(params: {
 
 			-- If agents are running in parallel, wait for all agents to complete
 			-- before resuming the genetic algorithm.
-			fitness:andThen(function(fitness: number)
+			(fitness :: Thenable):andThen(function(fitness: number)
 				threads -= 1
 				agents[index].fitness = fitness
-			end, function(err)
+			end, function(err: any)
 				threads -= 1
 				agents[index].fitness = 0
 				warn(`Agent {index} encountered an error:`, err)

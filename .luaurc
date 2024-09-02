@@ -1,3 +1,11 @@
 {
-	"languageMode": "strict"
+	"languageMode": "strict",
+	"lint": {
+		"*": true,
+	},
+	"lintErrors": true,
+	"globals": [
+		"warn",
+		"task"
+	],
 }

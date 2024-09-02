@@ -18,19 +18,21 @@ jobs:
         with:
           version: 8.15.4
 
-      - name: Install Aftman
-        uses: ok-nick/setup-aftman@v0.4.2
+      - name: Install Rokit
+        uses: CompeyDev/setup-rokit@v0.1.2
 
       - name: Install dependencies
         run: |
           pnpm install
-          pnpm wally
+          lune run install
 
       - name: Check code quality
-        run: pnpm lint
+        run: lune run check 
 
       - name: Run ESLint
         run: pnpm eslint
 
       - name: Build model
-        run: rojo build -o nanoai.rbxm
+        run: |
+          darklua process src/ rbx/ 
+          rojo build -o nanoai.rbxm

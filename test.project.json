@@ -1,0 +1,21 @@
+{
+	"name": "nanoai-test",
+	"tree": {
+		"$className": "DataModel",
+		"ServerScriptService": {
+			"$className": "ServerScriptService",
+			"Nanoai": {
+				"$path": "rbx"
+			}
+		},
+		"TestService": {
+			"$className": "TestService",
+			"$properties": {
+				"ExecuteWithStudioRun": true
+			},
+			"spec": {
+				"$path": "bin/spec.server.luau"
+			}
+		}
+	}
+}

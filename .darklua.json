@@ -1,0 +1,15 @@
+{
+	"rules": [
+		{
+			"rule": "convert_require",
+			"target": {
+				"name": "roblox",
+				"indexing_style": "property",
+				"rojo_sourcemap": "./sourcemap.json"
+			},
+			"current": {
+				"name": "path"
+			}
+		}
+	]
+}

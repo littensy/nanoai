@@ -1,7 +1,7 @@
-local activation = require(script.Parent.activation)
-local types = require(script.Parent.types)
+local activation = require("./activation")
+local types = require("./types")
 type Network = types.Network
-local predict = require(script.Parent.predict)
+local predict = require("./predict")
 
 --[=[
 	Adjusts the weights and biases of the network to minimize the error between

@@ -61,19 +61,19 @@ Nanoai = "littensy/nanoai@VERSION"
 
 ### XOR problem
 
-```ts
-const model = Nanoai.create([2, 3, 1], Activation.TanH);
+```lua
+local model = Nanoai.create({ 2, 3, 1 }, Nanoai.Activation.TanH)
 
-Nanoai.init.normal(model);
+Nanoai.init.normal(model)
 
-for (const _ of $range(1, 500)) {
-	Nanoai.backpropagate(model, [0, 1], [1], 0.3);
-	Nanoai.backpropagate(model, [1, 0], [1], 0.3);
-	Nanoai.backpropagate(model, [0, 0], [0], 0.3);
-	Nanoai.backpropagate(model, [1, 1], [0], 0.3);
-}
+for _ = 1, 500 do
+	Nanoai.backpropagate(model, { 0, 1 }, { 1 }, 0.3)
+	Nanoai.backpropagate(model, { 1, 0 }, { 1 }, 0.3)
+	Nanoai.backpropagate(model, { 0, 0 }, { 0 }, 0.3)
+	Nanoai.backpropagate(model, { 1, 1 }, { 0 }, 0.3)
+end
 
-Nanoai.predict(model, [0, 1]); // ~1
+Nanoai.predict(model, { 0, 1 }) -- ~1
 ```
 
 ---

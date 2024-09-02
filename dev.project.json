@@ -1,15 +1,6 @@
 {
 	"name": "nanoai-dev",
 	"tree": {
-		"$className": "DataModel",
-		"ServerScriptService": {
-			"$className": "ServerScriptService",
-			"Nanoai": { "$path": "src" }
-		},
-		"TestService": {
-			"$className": "TestService",
-			"$properties": { "ExecuteWithStudioRun": true },
-			"spec": { "$path": "bin/spec.server.luau" }
-		}
+		"$path": "src"
 	}
 }

@@ -1,4 +1,4 @@
-local types = require(script.Parent.types)
+local types = require("./types")
 type Network = types.Network
 
 export type Filter = "weights" | "biases" | "all"

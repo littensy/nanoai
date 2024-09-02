@@ -1,6 +1,6 @@
 {
 	"name": "nanoai",
 	"tree": {
-		"$path": "src"
+		"$path": "rbx"
 	}
 }

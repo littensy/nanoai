@@ -2,6 +2,7 @@
 /Packages
 /DevPackages
 /sourcemap.json
+/rbx
 *.tsbuildinfo
 *.tgz
 .DS_Store

@@ -10,16 +10,22 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install Aftman
-        uses: ok-nick/setup-aftman@v0.4.2
+      - name: Install Rokit 
+        uses: CompeyDev/setup-rokit@v0.1.2
 
       - name: Install dependencies
-        run: wally install
+        run: lune run install
+
+      - name: Convert requires
+        run: darklua process src/ rbx/
 
       - name: Build model
         run: rojo build -o nanoai.rbxm
 
+      - name: Create bundled archive
+        run: tar -czvf nanoai+roblox.tgz rbx/**.luau
+
       - uses: AButler/upload-release-assets@v3.0
         with:
-          files: "nanoai.rbxm"
+          files: "nanoai.rbxm;nanoai+roblox.tgz"
           repo-token: ${{ secrets.GITHUB_TOKEN }}
